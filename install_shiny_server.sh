@@ -32,17 +32,48 @@ apt_install \
 
 # Install Shiny server
 
-if [ "$SHINY_SERVER_VERSION" = "latest" ]; then
-    SHINY_SERVER_VERSION=$(wget -qO- https://download3.rstudio.org/ubuntu-18.04/x86_64/VERSION)
-fi
+git clone https://github.com/rstudio/shiny-server.git
 
-wget --no-verbose "https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
-gdebi -n ss-latest.deb
-rm ss-latest.deb
+# Get into a temporary directory in which we'll build the project
+cd shiny-server
+mkdir tmp
+cd tmp
 
-# Get R packages
-install2.r --error --skipinstalled -n "$NCPUS" shiny rmarkdown
+# Install our private copy of Node.js
+../external/node/install-node.sh
 
+# Add the bin directory to the path so we can reference node
+DIR=`pwd`
+PATH=$DIR/../bin:$PATH
+
+# Use cmake to prepare the make step. Modify the "--DCMAKE_INSTALL_PREFIX"
+# if you wish the install the software at a different location.
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../
+# Get an error here? Check the "How do I set the cmake Python version?" question below
+
+# Compile native code and install npm dependencies
+make
+mkdir ../build
+(cd .. && ./bin/npm install)
+
+# Install the software at the predefined location
+sudo make install
+
+# Install default config file
+sudo mkdir -p /etc/shiny-server
+sudo cp ../config/default.config /etc/shiny-server/shiny-server.conf
+
+# if [ "$SHINY_SERVER_VERSION" = "latest" ]; then
+#     SHINY_SERVER_VERSION=$(wget -qO- https://download3.rstudio.org/ubuntu-18.04/x86_64/VERSION)
+# fi
+# 
+# wget --no-verbose "https://download3.rstudio.org/ubuntu-18.04/x86_64/shiny-server-${SHINY_SERVER_VERSION}-amd64.deb" -O ss-latest.deb
+# gdebi -n ss-latest.deb
+# rm ss-latest.deb
+# 
+# # Get R packages
+# install2.r --error --skipinstalled -n "$NCPUS" shiny rmarkdown
+# 
 # Set up directories and permissions
 if [ -x "$(command -v rstudio-server)" ]; then
     DEFAULT_USER=${DEFAULT_USER:-rstudio}
