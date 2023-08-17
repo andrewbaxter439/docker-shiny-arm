@@ -16,4 +16,6 @@ RUN /rocker_scripts/install_shiny_server.sh
 
 EXPOSE 3838
 
+RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
+
 CMD ["/usr/bin/shiny-server"]
