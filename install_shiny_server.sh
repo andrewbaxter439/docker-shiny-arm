@@ -19,6 +19,9 @@ function apt_install() {
 apt_install \
     git \
     xz-utils \
+    cmake \
+    g++ \
+    gcc \
     sudo \
     gdebi-core \
     lsb-release \
