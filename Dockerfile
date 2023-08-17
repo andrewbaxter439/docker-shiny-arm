@@ -5,7 +5,7 @@ ENV SHINY_SERVER_VERSION=latest
 ENV PANDOC_VERSION=default
 
 COPY install_shiny_server.sh /rocker_scripts/install_shiny_server.sh
-RUN /rocker_scripts/install_tidyverse.sh
+# RUN /rocker_scripts/install_tidyverse.sh
 RUN /rocker_scripts/install_shiny_server.sh
 
 EXPOSE 3838

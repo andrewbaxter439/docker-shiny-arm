@@ -17,6 +17,8 @@ function apt_install() {
 }
 
 apt_install \
+    git \
+    xz-utils \
     sudo \
     gdebi-core \
     lsb-release \
