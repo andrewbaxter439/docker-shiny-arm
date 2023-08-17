@@ -16,6 +16,7 @@ function apt_install() {
     fi
 }
 
+
 apt_install \
     git \
     xz-utils \
@@ -59,6 +60,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr/local ../
 # Compile native code and install npm dependencies
 make
 mkdir ../build
+echo `ls` 
 (cd .. && ./bin/npm install)
 
 # Install the software at the predefined location
