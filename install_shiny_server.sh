@@ -36,7 +36,6 @@ sudo make install
 sudo mkdir -p /etc/shiny-server
 sudo cp ../config/default.config /etc/shiny-server/shiny-server.conf
 
-sudo cp ../samples/* /srv/shiny-server/
 
 # Place a shortcut to the shiny-server executable in /usr/bin
 sudo ln -s /usr/local/shiny-server/bin/shiny-server /usr/bin/shiny-server
@@ -50,4 +49,6 @@ sudo mkdir -p /srv/shiny-server
 sudo mkdir -p /var/lib/shiny-server
 sudo chown shiny /var/log/shiny-server
 sudo mkdir -p /etc/shiny-server
+
+sudo cp ../samples/* /srv/shiny-server/
 
