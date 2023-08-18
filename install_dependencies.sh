@@ -36,4 +36,4 @@ apt_install \
 # /rocker_scripts/install_s6init.sh
 /rocker_scripts/install_pandoc.sh
 
-install2.r --error --skipinstalled -t macos.binary shiny rmarkdown
+# install2.r --error --skipinstalled shiny rmarkdown
