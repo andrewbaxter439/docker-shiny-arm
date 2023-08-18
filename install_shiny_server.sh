@@ -40,6 +40,9 @@ sudo cp ../config/default.config /etc/shiny-server/shiny-server.conf
 # Place a shortcut to the shiny-server executable in /usr/bin
 sudo ln -s /usr/local/shiny-server/bin/shiny-server /usr/bin/shiny-server
 
+sudo rm /usr/local/shiny-server/ext/pandoc/pandoc
+sudo ln -s /usr/bin/pandoc /usr/local/shiny-server/ext/pandoc/pandoc
+
 # Create shiny user. On some systems, you may need to specify the full path to 'useradd'
 sudo useradd -r -m shiny
 
@@ -50,5 +53,5 @@ sudo mkdir -p /var/lib/shiny-server
 sudo chown shiny /var/log/shiny-server
 sudo mkdir -p /etc/shiny-server
 
-sudo cp -r ../samples/* /srv/shiny-server/
+# sudo cp -r ../samples/* /srv/shiny-server/
 

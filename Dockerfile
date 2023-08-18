@@ -14,8 +14,10 @@ COPY install_shiny_server.sh /rocker_scripts/
 RUN chmod 777 /rocker_scripts/install_shiny_server.sh
 RUN /rocker_scripts/install_shiny_server.sh
 
+COPY samples/ /srv/shiny-server/
+
 EXPOSE 3838
 
-RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
+# RUN R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cloud.r-project.org/')"
 
 CMD ["/usr/bin/shiny-server"]
