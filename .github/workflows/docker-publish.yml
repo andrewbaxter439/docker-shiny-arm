@@ -27,4 +27,4 @@ jobs:
           context: .
           push: true
           platforms: linux/arm64/v8
-          tags: andybaxter/docker-shiny-arm:latest
+          tags: andybaxter/docker-shiny-arm:${{ github.ref_name }}
