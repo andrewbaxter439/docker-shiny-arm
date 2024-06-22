@@ -5,7 +5,7 @@ set -e
 # Find the relevant checksum from:
 # https://nodejs.org/dist/v{VERSION}/SHASUMS256.txt
 # The node-v{VERSION}-linux-x64.tar.xz checksum is the one we need.
-NODE_SHA256=aca4794ca60f2e17689a700eeaa95d7adcd5fd01cdd2e4f9d596ac41b600b796
+NODE_SHA256=2e630e18548627f61eaf573233da7949dc0a1df5eef3f486fa9820c5f6c121aa
 
 cd /shiny-server
 
