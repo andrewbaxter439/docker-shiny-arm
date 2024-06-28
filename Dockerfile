@@ -1,4 +1,4 @@
-FROM rocker/r-ver:4.4.1
+FROM rocker/r-ver:4.3.3
 
 ENV S6_VERSION=v2.1.0.2
 ENV SHINY_SERVER_VERSION=latest
